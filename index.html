@@ -703,6 +703,11 @@
           <input id="nlEmail" type="email" name="email" placeholder="you@institution.org" autocomplete="email" required aria-describedby="nlMsg">
           <button class="btn btn-primary" type="submit"><span>Subscribe</span></button>
         </div>
+        <!-- Honeypot: hidden from people, so only bots fill it in. -->
+        <div class="nl-trap" aria-hidden="true">
+          <label for="nlWebsite">Website</label>
+          <input id="nlWebsite" type="text" name="website" tabindex="-1" autocomplete="off">
+        </div>
         <div class="nl-msg" id="nlMsg" role="status"></div>
       </form>
     </div>

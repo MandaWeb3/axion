@@ -77,6 +77,20 @@
   height: 46px;
 }
 
+.nl .btn:disabled {
+  opacity: .7;
+  cursor: progress;
+}
+
+/* Honeypot field: kept out of view and out of the tab order */
+.nl-trap {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .nl-msg {
   min-height: 22px;
   margin-top: 12px;

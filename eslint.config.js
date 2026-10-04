@@ -12,4 +12,11 @@ export default [
       globals: globals.browser,
     },
   },
+  {
+    // Vercel Functions run on Node.js
+    files: ['api/**/*.js'],
+    languageOptions: {
+      globals: globals.node,
+    },
+  },
 ];
