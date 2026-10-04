@@ -1,0 +1,32 @@
+{
+  "name": "axion-technology-foundation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Website of the AXION Technology Foundation: sovereign blockchain, trusted AI and the ANDRA method.",
+  "homepage": "https://axiontechnology.foundation/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MandaWeb3/axion.git"
+  },
+  "type": "module",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@fontsource/roboto": "^5.3.0",
+    "@fontsource/roboto-condensed": "^5.3.0",
+    "gsap": "^3.15.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.12.0",
+    "globals": "^17.13.0",
+    "vite": "^8.3.2"
+  }
+}

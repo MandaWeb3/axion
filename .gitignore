@@ -1,0 +1,16 @@
+# Dependencies and build output
+node_modules/
+dist/
+
+# Environment and local overrides
+.env
+.env.*
+*.local
+.vercel/
+
+# Logs and OS/editor files
+npm-debug.log*
+.DS_Store
+.idea/
+.vscode/
+.gstack/
