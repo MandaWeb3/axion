@@ -1,0 +1,53 @@
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 52px;
+  padding: 0 26px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 15.5px;
+  text-decoration: none;
+  cursor: pointer;
+  border: 0;
+  transition: box-shadow .3s, background .3s, color .3s;
+  will-change: transform;
+}
+
+.btn span {
+  pointer-events: none;
+  display: inline-block;
+  will-change: transform;
+}
+
+.btn-primary {
+  background: var(--grad);
+  color: #fff;
+  box-shadow: 0 0 0 0 rgba(48, 230, 248, 0);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 8px 28px -10px rgba(30, 156, 219, .55);
+}
+
+.btn-ghost {
+  background: rgba(255, 255, 255, .06);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, .35);
+  backdrop-filter: blur(6px);
+}
+
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, .14);
+}
+
+/* Magnetic buttons ease back to rest after the pointer leaves */
+.btn.settling {
+  transition: transform .5s cubic-bezier(.2, .8, .2, 1), box-shadow .3s, background .3s, color .3s;
+}
+
+.btn.settling span {
+  transition: transform .5s;
+}

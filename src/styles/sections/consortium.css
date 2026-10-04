@@ -1,0 +1,109 @@
+.inst {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 18px;
+  margin-top: 60px;
+}
+
+.inst-card {
+  position: relative;
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 340px;
+  padding: 26px;
+  color: #fff;
+  background: var(--navy);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.inst-card.big {
+  grid-column: span 3;
+  min-height: 380px;
+}
+
+.inst-card img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(.85);
+  transition: transform 1.2s cubic-bezier(.2, .8, .2, 1), filter .6s;
+}
+
+.inst-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(0deg, rgba(7, 24, 46, .95) 0%, rgba(7, 24, 46, .55) 45%, rgba(7, 24, 46, .1) 100%);
+}
+
+.inst-card .role {
+  font-size: 13.5px;
+  color: var(--cyan);
+  font-weight: 600;
+}
+
+.inst-card h3 {
+  margin: 8px 0 0;
+  font-size: 22px;
+}
+
+.inst-card p {
+  max-height: 0;
+  margin: 0;
+  opacity: 0;
+  overflow: hidden;
+  font-size: 15px;
+  color: var(--on-navy-soft);
+  transition: max-height .6s, opacity .5s, margin .5s;
+}
+
+@media (hover: hover) {
+  .inst-card:hover img,
+  .inst-card:focus-within img {
+    transform: scale(1.07);
+    filter: saturate(1.05);
+  }
+
+  .inst-card:hover p,
+  .inst-card:focus-within p {
+    max-height: 160px;
+    opacity: 1;
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 1080px) {
+  .inst-card,
+  .inst-card.big {
+    grid-column: span 3;
+  }
+
+  .inst-card:last-child {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 560px) {
+  .inst-card,
+  .inst-card.big,
+  .inst-card:last-child {
+    grid-column: span 6;
+    min-height: 280px;
+  }
+}
+
+/* Touch screens: show descriptions without hover */
+@media (hover: none) {
+  .inst-card p {
+    max-height: none;
+    opacity: 1;
+    margin-top: 10px;
+  }
+}

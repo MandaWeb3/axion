@@ -1,0 +1,142 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  padding-top: env(safe-area-inset-top, 0px);
+  border-bottom: 1px solid transparent;
+  transition: background .35s, backdrop-filter .35s, border-color .35s;
+}
+
+.nav.solid {
+  background: rgba(7, 24, 46, .82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-color: rgba(160, 190, 235, .12);
+}
+
+.nav-in {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  gap: 24px;
+}
+
+.nav-logo {
+  display: block;
+  padding: 4px 0;
+}
+
+.nav-logo img {
+  width: 156px;
+  height: auto;
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  position: relative;
+  padding: 6px 0;
+  color: var(--on-navy-soft);
+  text-decoration: none;
+  font-size: 14.5px;
+  font-weight: 500;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--cyan);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .3s;
+}
+
+.nav-links a:hover,
+.nav-links a.on {
+  color: #fff;
+}
+
+.nav-links a:hover::after,
+.nav-links a.on::after {
+  transform: scaleX(1);
+}
+
+.nav-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.nav .btn {
+  height: 42px;
+  padding: 0 20px;
+  font-size: 14px;
+}
+
+.menu-btn {
+  display: none;
+  background: none;
+  border: 1px solid rgba(255, 255, 255, .3);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+@media (max-width: 1080px) {
+  .nav-links {
+    display: none;
+  }
+
+  .menu-btn {
+    display: inline-block;
+  }
+
+  .nav-cta {
+    display: none;
+  }
+
+  .nav.menu-open {
+    background: rgba(7, 24, 46, .97);
+  }
+
+  .nav.menu-open .nav-links {
+    display: flex;
+    position: absolute;
+    top: calc(72px + env(safe-area-inset-top, 0px));
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: rgba(7, 24, 46, .97);
+    padding: 10px 24px 24px;
+    border-bottom: 1px solid rgba(160, 190, 235, .15);
+  }
+
+  .nav.menu-open .nav-links a {
+    display: block;
+    padding: 14px 0;
+    font-size: 17px;
+    border-bottom: 1px solid rgba(160, 190, 235, .1);
+  }
+}
+
+@media (max-width: 560px) {
+  .nav-logo img {
+    width: 144px;
+  }
+}

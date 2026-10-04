@@ -1,0 +1,304 @@
+.method {
+  background: var(--navy);
+  color: var(--on-navy);
+  overflow: hidden;
+}
+
+.method .kicker {
+  color: var(--cyan);
+}
+
+.method .lead {
+  color: var(--on-navy-muted);
+}
+
+.grid-lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .5;
+  background-image:
+    linear-gradient(rgba(120, 170, 255, .07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120, 170, 255, .07) 1px, transparent 1px);
+  background-size: 96px 96px;
+  mask-image: radial-gradient(ellipse 70% 60% at 60% 40%, #000 20%, transparent 75%);
+  animation: pan 40s linear infinite;
+}
+
+@keyframes pan {
+  to { background-position: 96px 96px; }
+}
+
+/* ---------- four operating states ---------- */
+.states {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 72px;
+}
+
+.rail {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 22px;
+  height: 2px;
+  background: var(--on-navy-line);
+}
+
+.rail b {
+  position: absolute;
+  inset: 0;
+  background: var(--grad);
+  transform-origin: left;
+  transform: scaleX(var(--p, 1));
+}
+
+.state {
+  position: relative;
+  padding: 0 28px 0 0;
+}
+
+.state .dot {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--navy);
+  border: 2px solid rgba(160, 190, 235, .35);
+  font: 700 16px var(--display);
+  color: var(--on-navy-soft);
+  transition: border-color .4s, color .4s, box-shadow .4s;
+}
+
+.state.lit .dot {
+  border-color: var(--cyan);
+  color: #fff;
+  box-shadow: 0 0 0 6px rgba(48, 230, 248, .1), 0 0 30px rgba(48, 230, 248, .35);
+}
+
+.state h3 {
+  margin: 26px 0 10px;
+  color: #fff;
+}
+
+.state p {
+  font-size: 15.5px;
+  color: var(--on-navy-muted);
+  margin: 0;
+}
+
+.state.dest h3 {
+  color: var(--cyan);
+}
+
+.dual-note {
+  margin: 44px 0 0;
+  font-size: 15px;
+  color: var(--on-navy-muted);
+  max-width: 70ch;
+}
+
+/* ---------- agent promotion ladder ---------- */
+.ladder {
+  display: grid;
+  grid-template-columns: .85fr 1.15fr;
+  gap: clamp(36px, 6vw, 90px);
+  margin-top: clamp(80px, 9vw, 120px);
+  align-items: start;
+}
+
+.ladder-title {
+  font-size: clamp(26px, 2.6vw, 36px);
+  color: #fff;
+}
+
+.ladder-intro {
+  color: var(--on-navy-muted);
+  margin-top: 14px;
+}
+
+.rungs {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 8px;
+  margin-top: 30px;
+}
+
+.rung {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 1px solid var(--on-navy-line);
+  padding: 16px 20px;
+  cursor: pointer;
+  color: var(--on-navy-soft);
+  transition: background .3s, border-color .3s, padding .3s;
+}
+
+.rung .r {
+  width: 34px;
+  font: 700 14px var(--display);
+  color: var(--on-navy-subtle);
+  transition: color .3s;
+}
+
+.rung .n {
+  font: 700 18px var(--display);
+  color: inherit;
+}
+
+.rung .bar {
+  position: relative;
+  flex: 1;
+  height: 2px;
+  background: rgba(160, 190, 235, .15);
+  overflow: hidden;
+}
+
+.rung .bar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--grad);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .5s;
+}
+
+.rung:hover {
+  border-color: rgba(48, 230, 248, .45);
+}
+
+.rung[aria-selected="true"] {
+  background: rgba(53, 74, 246, .14);
+  border-color: var(--cyan);
+  color: #fff;
+  padding-left: 28px;
+}
+
+.rung[aria-selected="true"] .r {
+  color: var(--cyan);
+}
+
+.rung[aria-selected="true"] .bar::after {
+  transform: scaleX(1);
+}
+
+.rung-panel {
+  position: relative;
+  border: 1px solid var(--on-navy-line);
+  padding: clamp(28px, 4vw, 48px);
+  background: linear-gradient(160deg, rgba(53, 74, 246, .10), rgba(7, 24, 46, 0) 60%);
+}
+
+.rung-panel .tag {
+  font: 700 clamp(64px, 8vw, 112px)/1 var(--display);
+  letter-spacing: -.01em;
+  color: var(--cyan);
+}
+
+.rung-panel h3 {
+  font-size: clamp(24px, 2.4vw, 32px);
+  margin: 10px 0 28px;
+  color: #fff;
+}
+
+.rung-panel .swap {
+  transition: opacity .25s, transform .25s;
+}
+
+.rung-panel.out .swap {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.rp-row {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 20px;
+  padding: 18px 0;
+  border-top: 1px solid rgba(160, 190, 235, .15);
+}
+
+.rp-row span {
+  font-size: 14px;
+  color: var(--on-navy-subtle);
+}
+
+.rp-row p {
+  margin: 0;
+  color: var(--on-navy);
+}
+
+/* ---------- mechanisms ---------- */
+.mech {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(30px, 5vw, 70px);
+  margin-top: clamp(70px, 8vw, 110px);
+  padding-top: 44px;
+  border-top: 1px solid rgba(160, 190, 235, .15);
+}
+
+.mech h3 {
+  color: #fff;
+}
+
+.mech p {
+  color: var(--on-navy-muted);
+  margin: 12px 0 0;
+  font-size: 16px;
+}
+
+@media (max-width: 820px) {
+  .ladder,
+  .mech {
+    grid-template-columns: 1fr;
+  }
+
+  .states {
+    grid-template-columns: 1fr;
+    gap: 34px;
+    padding-left: 66px;
+  }
+
+  .rail {
+    left: 22px;
+    right: auto;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    height: auto;
+  }
+
+  .rail b {
+    transform-origin: top;
+    transform: scaleY(var(--p, 1));
+  }
+
+  .state {
+    padding: 0;
+  }
+
+  .state .dot {
+    position: absolute;
+    left: -66px;
+    top: -6px;
+  }
+
+  .state h3 {
+    margin-top: 0;
+  }
+
+  .rp-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}

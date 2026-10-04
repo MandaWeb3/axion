@@ -1,0 +1,152 @@
+.partner {
+  background: var(--navy);
+  color: #fff;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.partner::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  right: -300px;
+  top: -300px;
+  width: 900px;
+  height: 900px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(53, 74, 246, .35), transparent 65%);
+  pointer-events: none;
+}
+
+.partner .kicker {
+  color: var(--cyan);
+}
+
+.partner h2 {
+  max-width: 16ch;
+  font-size: clamp(38px, 5.4vw, 76px);
+}
+
+.partner .lead {
+  color: var(--on-navy-muted);
+}
+
+.partner .way h3,
+.partner .way p,
+.partner .lead {
+  text-shadow: 0 1px 14px rgba(4, 12, 26, .85);
+}
+
+/* ---------- globe media: video plays once, then holds on the end frame ---------- */
+.partner-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.partner-media img,
+.partner-media video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 62% 60%;
+}
+
+.partner-media .pm-end {
+  opacity: 0;
+  transition: opacity 1.4s ease;
+}
+
+.partner-media .pm-vid {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.partner-media.playing .pm-vid {
+  opacity: 1;
+}
+
+.partner-media.done .pm-end {
+  opacity: 1;
+}
+
+.partner-media.done .pm-vid {
+  opacity: 0;
+  transition-delay: .2s;
+}
+
+.pm-scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(7, 24, 46, .94) 0%, rgba(7, 24, 46, .82) 38%, rgba(7, 24, 46, .35) 75%, rgba(7, 24, 46, .25) 100%),
+    linear-gradient(0deg, rgba(7, 24, 46, .93) 0%, rgba(7, 24, 46, .78) 26%, rgba(7, 24, 46, 0) 52%);
+}
+
+/* ---------- ways to partner ---------- */
+.ways {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 64px;
+  border-top: 1px solid rgba(160, 190, 235, .2);
+}
+
+.way {
+  padding: 30px 30px 10px 0;
+  border-right: 1px solid rgba(160, 190, 235, .2);
+  margin-right: 30px;
+}
+
+.way:last-child {
+  border: 0;
+  margin: 0;
+}
+
+.way h3 {
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.way p {
+  color: #B4C2D6;
+  font-size: 15.5px;
+  margin: 0;
+}
+
+.partner-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  margin-top: 56px;
+}
+
+.partner-cta small {
+  color: var(--on-navy-muted);
+  font-size: 14.5px;
+  margin-left: 8px;
+}
+
+.partner-cta small a {
+  color: var(--cyan);
+}
+
+@media (max-width: 820px) {
+  .pm-scrim {
+    background: linear-gradient(180deg, rgba(7, 24, 46, .55), rgba(7, 24, 46, .9) 55%);
+  }
+
+  .ways {
+    grid-template-columns: 1fr;
+  }
+
+  .way {
+    border-right: 0;
+    margin-right: 0;
+    border-bottom: 1px solid rgba(160, 190, 235, .2);
+    padding-bottom: 26px;
+  }
+}

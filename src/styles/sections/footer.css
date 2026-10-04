@@ -1,0 +1,134 @@
+.site-footer {
+  position: relative;
+  padding: 80px 0 calc(40px + env(safe-area-inset-bottom, 0px));
+  background: var(--ink);
+  color: var(--on-navy-soft);
+}
+
+.foot {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 60px;
+}
+
+.foot img {
+  width: 190px;
+  height: auto;
+}
+
+.foot .tl {
+  max-width: 22ch;
+  margin: 26px 0 8px;
+  font: 700 24px/1.15 var(--display);
+  letter-spacing: -.01em;
+  color: #fff;
+}
+
+.foot p {
+  font-size: 15px;
+  color: #8FA3BF;
+  margin: 0;
+}
+
+/* ---------- briefing sign-up ---------- */
+.nl label {
+  display: block;
+  font: 700 19px var(--display);
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.nl .hint {
+  font-size: 14.5px;
+  color: #8FA3BF;
+  margin: 0 0 18px;
+}
+
+.nl-row {
+  display: flex;
+  gap: 10px;
+  padding: 6px;
+  border: 1px solid rgba(160, 190, 235, .28);
+  border-radius: 999px;
+  transition: border-color .3s;
+}
+
+.nl-row:focus-within {
+  border-color: var(--cyan);
+}
+
+.nl input {
+  flex: 1;
+  min-width: 0;
+  padding: 0 16px;
+  background: transparent;
+  border: 0;
+  outline: none;
+  color: #fff;
+  font: inherit;
+  font-size: 15.5px;
+}
+
+.nl input::placeholder {
+  color: var(--on-navy-subtle);
+}
+
+.nl .btn {
+  height: 46px;
+}
+
+.nl-msg {
+  min-height: 22px;
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--cyan);
+}
+
+.nl-msg.err {
+  color: #FF9A73;
+}
+
+/* ---------- bottom bar ---------- */
+.foot-bot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 70px;
+  padding-top: 26px;
+  border-top: 1px solid rgba(160, 190, 235, .14);
+  font-size: 13.5px;
+  color: var(--on-navy-subtle);
+}
+
+.foot-bot a {
+  color: var(--on-navy-soft);
+  text-decoration: none;
+}
+
+.foot-bot a:hover {
+  color: #fff;
+}
+
+.foot-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+}
+
+@media (max-width: 820px) {
+  .foot {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .nl-row {
+    flex-direction: column;
+    border-radius: 18px;
+  }
+
+  .nl input {
+    height: 46px;
+  }
+}

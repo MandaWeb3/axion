@@ -1,0 +1,255 @@
+/* ---------- layered architecture ---------- */
+.stack-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(30px, 6vw, 90px);
+  align-items: start;
+  margin-top: 60px;
+}
+
+.iso-box {
+  display: grid;
+  place-items: start center;
+  height: 420px;
+  padding-top: 40px;
+  perspective: 1400px;
+}
+
+/* Tilt is driven through custom properties so pointer tilting keeps the
+   rotateX → rotateZ order that produces the isometric view. */
+.iso {
+  --tilt-x: 58deg;
+  --tilt-z: -40deg;
+  position: relative;
+  width: 300px;
+  height: 300px;
+  transform: rotateX(var(--tilt-x)) rotateZ(var(--tilt-z));
+  transform-style: preserve-3d;
+}
+
+.slab {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(48, 230, 248, .55);
+  transform-style: preserve-3d;
+  background-image:
+    linear-gradient(135deg, rgba(53, 74, 246, .18), rgba(48, 230, 248, .08)),
+    radial-gradient(circle, rgba(48, 230, 248, .6) 1.4px, transparent 1.6px);
+  background-size: auto, 30px 30px;
+  transition: transform .6s cubic-bezier(.2, .8, .2, 1), background .4s, box-shadow .4s;
+}
+
+.slab[data-l="1"] { transform: translateZ(0); }
+.slab[data-l="2"] { transform: translateZ(80px); }
+.slab[data-l="3"] { transform: translateZ(160px); }
+
+.slab.on {
+  background-image:
+    linear-gradient(135deg, rgba(53, 74, 246, .75), rgba(48, 230, 248, .55)),
+    radial-gradient(circle, rgba(255, 255, 255, .8) 1.4px, transparent 1.6px);
+  box-shadow: 0 0 60px rgba(30, 156, 219, .55);
+}
+
+.slab[data-l="1"].on { transform: translateZ(-14px); }
+.slab[data-l="2"].on { transform: translateZ(80px) scale(1.04); }
+.slab[data-l="3"].on { transform: translateZ(186px); }
+
+.slab em {
+  position: absolute;
+  right: -56px;
+  bottom: 10px;
+  font: 700 18px var(--display);
+  font-style: normal;
+  color: var(--accent-text);
+  transform: rotateZ(40deg) rotateX(-58deg);
+  transform-origin: left bottom;
+}
+
+.layers {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+
+.layers li {
+  border-bottom: 1px solid var(--line);
+}
+
+.layer-btn {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 18px;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: 0;
+  padding: 24px 0;
+  cursor: pointer;
+  transition: padding .3s;
+}
+
+.layer-btn .lk {
+  font: 700 20px var(--display);
+  color: var(--muted);
+  transition: color .3s;
+}
+
+.layer-btn h3 {
+  font-size: 21px;
+}
+
+.layer-btn p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 15.5px;
+}
+
+.layer-btn[aria-pressed="true"] {
+  padding-left: 14px;
+}
+
+.layer-btn[aria-pressed="true"] .lk {
+  color: var(--accent-text);
+}
+
+/* ---------- research pillars ---------- */
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  margin-top: clamp(70px, 8vw, 110px);
+}
+
+.pillar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 330px;
+  padding: 34px 28px 30px;
+  background: var(--bg);
+  overflow: hidden;
+  transition: background .4s;
+}
+
+.pillar svg.pi {
+  display: block;
+  width: auto;
+  height: 52px;
+  max-width: 60px;
+  color: #5566F9;
+  transition: transform .4s cubic-bezier(.2, .8, .2, 1);
+}
+
+.pillar:hover svg.pi,
+.pillar:focus-within svg.pi {
+  transform: translateY(-3px);
+}
+
+.pillar h3 {
+  margin: 28px 0 10px;
+}
+
+.pillar .focus {
+  font-size: 15px;
+  color: var(--muted);
+  margin: 0;
+}
+
+.pillar .why {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 28px;
+  background: var(--navy);
+  color: var(--on-navy);
+  font-size: 15.5px;
+  transform: translateY(101%);
+  transition: transform .5s cubic-bezier(.2, .8, .2, 1);
+}
+
+.pillar .why b {
+  display: block;
+  color: var(--cyan);
+  font-size: 13.5px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.pillar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--grad);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .5s;
+}
+
+@media (hover: hover) {
+  .pillar:hover .why,
+  .pillar:focus-within .why {
+    transform: none;
+  }
+
+  .pillar:hover::after,
+  .pillar:focus-within::after {
+    transform: scaleX(1);
+  }
+}
+
+.pillar:focus-visible .why {
+  transform: none;
+}
+
+@media (max-width: 1080px) {
+  .pillars {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 820px) {
+  .stack-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .iso-box {
+    height: 330px;
+  }
+
+  .iso {
+    width: 220px;
+    height: 220px;
+  }
+
+  .slab[data-l="2"] { transform: translateZ(60px); }
+  .slab[data-l="3"] { transform: translateZ(120px); }
+  .slab[data-l="2"].on { transform: translateZ(60px) scale(1.04); }
+  .slab[data-l="3"].on { transform: translateZ(140px); }
+}
+
+@media (max-width: 560px) {
+  .pillars {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Touch screens: show the "why it matters" panel inline instead of on hover */
+@media (hover: none) {
+  .pillar {
+    min-height: 0;
+  }
+
+  .pillar .why {
+    position: relative;
+    transform: none;
+    margin: 22px -28px -30px;
+    padding: 22px 28px;
+  }
+}
